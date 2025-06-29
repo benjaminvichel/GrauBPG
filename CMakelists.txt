@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(GRAUBCG)
+project(PGCCHIB)
 
 # Define o padrão do C++
 set(CMAKE_CXX_STANDARD 17)
@@ -37,24 +37,27 @@ FetchContent_MakeAvailable(stb_image)
 # Adiciona as pastas de cabeçalhos
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/common)
+include_directories(${CMAKE_SOURCE_DIR}/common/M5-6)
 include_directories(${CMAKE_SOURCE_DIR}/include/glad)
 include_directories(${glm_SOURCE_DIR})
-include_directories(${stb_image_SOURCE_DIR})
 
 
 # Lista de exemplos/exercícios podem ser colocados aqui também
 set(EXERCISES
-
-    Hello3D
-    Modulo2
-    Modulo3
-    Modulo4
-    Modulo5
-    Modulo6
-    TriangleTex
-    SpherePhong
-    TrabalhoGrauB
-   
+    ExemplosMoodle/M1_material/exemplo_00
+    ExemplosMoodle/M1_material/exemplo_01
+    ExemplosMoodle/M2_material/exemplo_02
+    ExemplosMoodle/M3_material/exemplo_03
+    ExemplosMoodle/M4_material/exemplo_04
+    HelloTriangle
+    HelloTransform
+    HelloTexture
+    HelloSprite
+    HelloAnimatedSprite
+    HelloIsometricTilemap
+    Modulo2/Ex1Parte1M2
+    Modulo2/Ex1Parte2M2
+    Modulo3/M3JogoCores
 )
 
 add_compile_options(-Wno-pragmas)
@@ -80,7 +83,14 @@ endif()
 
 # Cria os executáveis
 foreach(EXERCISE ${EXERCISES})
-    add_executable(${EXERCISE} src/${EXERCISE}.cpp ${GLAD_C_FILE})
-    target_include_directories(${EXERCISE} PRIVATE ${CMAKE_SOURCE_DIR}/include/glad ${glm_SOURCE_DIR} ${stb_image_SOURCE_DIR})
-    target_link_libraries(${EXERCISE} glfw ${OPENGL_LIBS})
+    # Extrai o nome do arquivo sem o diretório para o executável
+    get_filename_component(EXE_NAME ${EXERCISE} NAME)                                                                                                                                       
+    
+    # Adiciona o executável usando o nome do arquivo como nome do executável
+    add_executable(${EXE_NAME} src/${EXERCISE}.cpp ${GLAD_C_FILE}) 
+
+    # Configura as bibliotecas e include dirs para o executável
+    target_include_directories(${EXE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include/glad ${glm_SOURCE_DIR} ${stb_image_SOURCE_DIR})
+    target_link_libraries(${EXE_NAME} glfw ${OPENGL_LIBS} glm::glm)
 endforeach()
+

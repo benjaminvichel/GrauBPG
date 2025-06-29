@@ -1,1 +1,1 @@
-Atividade Processamento Gráfico
+Processamento Gráfico
