@@ -1,2 +1,1 @@
-# GrauBPG
-Atividades Processamento Gráfico
+Atividade Processamento Gráfico
