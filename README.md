@@ -1,7 +1,10 @@
-Processamento Gráfico
+# Processamento Gráfico
 
-Para executar:
+## Para executar:
 
-CMake build
+```bash
+ctrl + shift + p:
+cmake configure
+cmake build
 cd build
 ./main2.exe
